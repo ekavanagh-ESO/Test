@@ -1,0 +1,82 @@
+@MythTechTest_HostAddress = http://localhost:5069
+
+GET {{MythTechTest_HostAddress}}/api/SportsEvents/
+Accept: application/json
+
+###
+### positive test
+#### 
+GET {{MythTechTest_HostAddress}}/api/sportsevents/GN909DM9N0EKBTJ
+Accept: application/json
+Content-Type: application/json
+
+
+### 
+### 400 bad request
+####
+
+### 4. Test Empty ID (Should return 400)
+GET {{MythTechTest_HostAddress}}/api/SportsEvents/
+Accept: application/json
+
+###
+GET {{MythTechTest_HostAddress}}/api/SportsEvents/%20
+Accept: application/json
+
+### 
+### 404 not found
+####
+
+### 
+GET {{MythTechTest_HostAddress}}/api/SportsEvents/123
+Accept: application/json
+
+### 
+GET {{MythTechTest_HostAddress}}/api/SportsEvents/123456789
+Accept: application/json
+
+### 
+GET {{MythTechTest_HostAddress}}/api/SportsEvents/XXXXXXXXXXXXXXXXX
+Accept: application/json
+
+### 
+GET {{MythTechTest_HostAddress}}/api/SportsEvents/INVALID@#$%^&*()
+Accept: application/json
+
+### 
+### edge cases
+####
+
+### 
+GET {{MythTechTest_HostAddress}}/api/SportsEvents/123456789012345678901234567890123456789012345678901234567890
+Accept: application/json
+
+### no header
+GET {{MythTechTest_HostAddress}}/api/SportsEvents/GN909DM9N0EKBTJ
+
+### diff accept header
+GET {{MythTechTest_HostAddress}}/api/SportsEvents/GN909DM9N0EKBTJ
+Accept: application/xml
+
+### 
+### methods that arent GET -  return 405
+#### 
+
+### 
+POST {{MythTechTest_HostAddress}}/api/SportsEvents/GN909DM9N0EKBTJ
+Content-Type: application/json
+
+### 
+PUT {{MythTechTest_HostAddress}}/api/SportsEvents/GN909DM9N0EKBTJ
+Content-Type: application/json
+
+### 
+DELETE {{MythTechTest_HostAddress}}/api/SportsEvents/GN909DM9N0EKBTJ
+
+### 
+### api status
+#### 
+
+### is api running?
+GET {{MythTechTest_HostAddress}}/swagger/index.html
+
